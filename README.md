@@ -8,4 +8,6 @@ I might then also want to split my javascript into multiple files. Maybe one fil
 
 More questions: How would I best use the principle of objects that were taught in the previous lesson? How would I best use higher-order functions? What should the layout of the calculator be like?
 
+Should probably be adding a favicon too. For fanciness.
+
 I think this is going to be a fun project :)
