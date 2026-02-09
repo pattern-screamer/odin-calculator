@@ -31,13 +31,13 @@ button {
   display: flex;
 }
 
-.number-buttons {
+.digit-buttons {
   display: flex;
   flex-wrap: wrap;
   width: calc(100% * 3 / 4);
 }
 
-.number-buttons > button {
+.digit-buttons > button {
   width: calc(100% / 3);
 }
 
