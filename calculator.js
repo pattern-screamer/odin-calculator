@@ -53,12 +53,16 @@ const updateOperator = function (operatorChar) {
   if (numOne.length > 0) {
     operator = operatorChar;
     displayOperator.textContent = operatorChar;
-    shiftInputNumber();
+    if (inputNumber === 0) {
+      shiftInputNumber();
+    }
   } else if (storedResult.length > 0) {
     updateNumOne(storedResult);
     operator = operatorChar;
     displayOperator.textContent = operatorChar;
-    shiftInputNumber();
+    if (inputNumber === 0) {
+      shiftInputNumber();
+    }
   }
 }
 
@@ -70,13 +74,16 @@ const updateNumTwo = function (digit) {
 const funnelDigitInput = function (digit) {
   if (inputNumber === 0) {
     updateNumOne(digit);
-  } else if (inputNumber === 1) {
+  } else if (inputNumber === 2) {
     updateNumTwo(digit);
   }
 }
 
 //Button event listeners
 const handleDigitInput = function (event) {
+  if (inputNumber === 1) {
+    shiftInputNumber();
+  }
   switch (event.target.id) {
     case 'zero':
       funnelDigitInput(0);
@@ -112,7 +119,7 @@ const handleDigitInput = function (event) {
 }
 
 const handleOperatorInput = function (event) {
-  if (inputNumber === 0) {
+  if (inputNumber < 2) {
     switch (event.target.id) {
       case 'plus':
         updateOperator('+');
@@ -138,7 +145,7 @@ const equals = function () {
     displayResult.textContent = numOne;
     storeResult(numOne);
     clearPartial();
-  } else if (numTwo.length > 0 && inputNumber === 1) {
+  } else if (numTwo.length > 0 && inputNumber === 2) {
     result = operate(Number(numOne), Number(numTwo), operator);
     displayResult.textContent = String(result);
     storeResult(String(result));
