@@ -77,6 +77,10 @@ const clear = function () {
   displayNumTwo.textContent = '';
 }
 
+const shiftInputNumber = function () {
+  inputNumber++;
+}
+
 const clearButton = document.querySelector('#clear');
 
 clearButton.addEventListener('click', clear);
