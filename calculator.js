@@ -49,6 +49,11 @@ const updateOperator = function (operatorChar) {
     operator = operatorChar;
     displayOperator.textContent = operatorChar;
     shiftInputNumber();
+  } else if (storedResult.length > 0) {
+    updateNumOne(storedResult);
+    operator = operatorChar;
+    displayOperator.textContent = operatorChar;
+    shiftInputNumber();
   }
 }
 
@@ -122,12 +127,14 @@ const handleOperatorInput =  function (event) {
 
 const equals = function () {
   if (numTwo.length > 0 && inputNumber === 1) {
-    result.textContent = operate(Number(numOne), Number(numTwo), operator);
-    clear();
+    result = operate(Number(numOne), Number(numTwo), operator);
+    displayResult.textContent = String(result);
+    storeResult(String(result));
+    clearPartial();
   }
 }
 
-const clear = function () {
+const clearPartial = function () {
   numOne = '';
   operator = '';
   numTwo = '';
@@ -135,6 +142,18 @@ const clear = function () {
   displayNumOne.textContent = '';
   displayOperator.textContent = '';
   displayNumTwo.textContent = '';
+}
+
+const clearFull = function () {
+  numOne = '';
+  operator = '';
+  numTwo = '';
+  inputNumber = 0;
+  displayNumOne.textContent = '';
+  displayOperator.textContent = '';
+  displayNumTwo.textContent = '';
+  displayResult.textContent = '';
+  storedResult = '';
 }
 
 const shiftInputNumber = function () {
@@ -145,12 +164,12 @@ const digitButtons = document.querySelector('#digit-buttons');
 const operatorButtons = document.querySelector('#operator-buttons');
 const equalsButton = document.querySelector('#equals');
 const clearButton = document.querySelector('#clear');
-const result = document.querySelector('#result');
+const displayResult = document.querySelector('#result');
 
 digitButtons.addEventListener('click', handleDigitInput);
 operatorButtons.addEventListener('click', handleOperatorInput);
 equalsButton.addEventListener('click', equals);
-clearButton.addEventListener('click', clear);
+clearButton.addEventListener('click', clearFull);
 
 //Add result storing and manipulation functionality
 let storedResult = '';
