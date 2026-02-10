@@ -68,11 +68,38 @@ const handleDigitInput = function (event) {
     case 'zero':
       funnelDigitInput(0);
       break;
+    case 'one':
+      funnelDigitInput(1);
+      break;
+    case 'two':
+      funnelDigitInput(2);
+      break;
+    case 'three':
+      funnelDigitInput(3);
+      break;
+    case 'four':
+      funnelDigitInput(4);
+      break;
+    case 'five':
+      funnelDigitInput(5);
+      break;
+    case 'six':
+      funnelDigitInput(6);
+      break;
+    case 'seven':
+      funnelDigitInput(7);
+      break;
+    case 'eight':
+      funnelDigitInput(8);
+      break;
+    case 'nine':
+      funnelDigitInput(9);
+      break;
   }
 }
 
 const handleOperatorInput = function (event) {
-  
+
 }
 
 const equals = function () {
