@@ -106,7 +106,7 @@ const handleDigitInput = function (event) {
   }
 }
 
-const handleOperatorInput =  function (event) {
+const handleOperatorInput = function (event) {
   if (inputNumber === 0) {
     switch (event.target.id) {
       case 'plus':
@@ -126,7 +126,14 @@ const handleOperatorInput =  function (event) {
 }
 
 const equals = function () {
-  if (numTwo.length > 0 && inputNumber === 1) {
+  if (numOne.length > 0 && operator.length > 0 && numTwo.length === 0) {
+    printError();
+  } else if (numOne.length > 0 && operator.length === 0) {
+    result = numOne;
+    displayResult.textContent = numOne;
+    storeResult(numOne);
+    clearPartial();
+  } else if (numTwo.length > 0 && inputNumber === 1) {
     result = operate(Number(numOne), Number(numTwo), operator);
     displayResult.textContent = String(result);
     storeResult(String(result));
@@ -176,4 +183,10 @@ let storedResult = '';
 
 const storeResult = function (number) {
   storedResult = number;
+}
+
+//Print error
+const printError = function () {
+  clearPartial();
+  displayNumOne.textContent = 'ERROR';
 }
