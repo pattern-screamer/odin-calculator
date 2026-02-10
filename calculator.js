@@ -45,9 +45,11 @@ const updateNumOne = function (digit) {
 }
 
 const updateOperator = function (operatorChar) {
-  operator = operatorChar;
-  displayOperator.textContent = operatorChar;
-  shiftInputNumber();
+  if (numOne.length > 0) {
+    operator = operatorChar;
+    displayOperator.textContent = operatorChar;
+    shiftInputNumber();
+  }
 }
 
 const updateNumTwo = function (digit) {
@@ -100,7 +102,7 @@ const handleDigitInput = function (event) {
 }
 
 const handleOperatorInput =  function (event) {
-  if (numOne.length > 0 && inputNumber === 0) {
+  if (inputNumber === 0) {
     switch (event.target.id) {
       case 'plus':
         updateOperator('+');
@@ -149,3 +151,10 @@ digitButtons.addEventListener('click', handleDigitInput);
 operatorButtons.addEventListener('click', handleOperatorInput);
 equalsButton.addEventListener('click', equals);
 clearButton.addEventListener('click', clear);
+
+//Add result storing and manipulation functionality
+let storedResult = '';
+
+const storeResult = function (number) {
+  storedResult = number;
+}
