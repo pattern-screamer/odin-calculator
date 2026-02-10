@@ -28,7 +28,7 @@ const operate = function (num1, num2, operator) {
   }
 }
 
-//DOM-functions
+//DOM manipulation functions
 const setNumOne = function (numOne) {
   num1 = numOne;
   displayNumOne.textContent = numOne;
@@ -44,13 +44,37 @@ const setOperator = function (operatorChar) {
   displayOperator.textContent = operatorChar;
 }
 
+//Eventlistener functions
+const handleDigitInput = function (event) {
+  switch (event.target.id) {
+    
+  }
+}
+
+const handleOperatorInput = function (event) {
+  switch (event.target.id) {
+    
+  }
+}
+
+const clear = function () {
+
+}
+
+//Display DOM references
 const displayNumOne = document.querySelector('#num1');
 const displayNumTwo = document.querySelector('#num2');
 const displayOperator = document.querySelector('#operator');
-const digitButtons = document.querySelector('#digit-buttons');
-const utilityButtons = document.querySelector('#utility-buttons');
 
-digitButtons.addEventListener()
+//Button DOM references
+const digitButtons = document.querySelector('#digit-buttons');
+const operatorButtons = document.querySelector('#operator-buttons');
+const clearButton = document.querySelector('#clear');
+
+//Adding eventListeners
+digitButtons.addEventListener('click', handleDigitInput);
+operatorButtons.addEventListener('click', handleDigitInput);
+clearButton.addEventListener('click', clear);
 
 let num1;
 let num2;
