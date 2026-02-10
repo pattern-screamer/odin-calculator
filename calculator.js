@@ -61,10 +61,11 @@ const handleDigitInput = function (event) {
 
 const handleOperatorInput = function (event) {
 
+
 }
 
 const equals = function () {
-
+  
 }
 
 const clear = function () {
@@ -81,6 +82,8 @@ const shiftInputNumber = function () {
   inputNumber++;
 }
 
+const equalsButton = document.querySelector('#equals');
 const clearButton = document.querySelector('#clear');
 
+equalsButton.addEventListener('click', equals)
 clearButton.addEventListener('click', clear);
