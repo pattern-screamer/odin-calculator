@@ -30,35 +30,72 @@ const operate = function (num1, num2, operator) {
 
 //DOM manipulation functions
 const setNumOne = function (numOne) {
-  num1 = numOne;
-  displayNumOne.textContent = numOne;
+  num1 += numOne;
+  displayNumOne.textContent += numOne;
 }
 
 const setNumTwo = function (numTwo) {
-  num2 = numTwo;
-  displayNumTwo.textContent = numTwo;
+  num2 += numTwo;
+  displayNumTwo.textContent += numTwo;
 }
 
 const setOperator = function (operatorChar) {
   operator = operatorChar;
   displayOperator.textContent = operatorChar;
+  inputStage++;
 }
 
 //Eventlistener functions
 const handleDigitInput = function (event) {
   switch (event.target.id) {
-    
+    case 'zero':
+      whichNumber(0);
+      break;
+  }
+}
+
+const whichNumber = function(digit) {
+  if (inputStage === 0) {
+    setNumOne(digit);
+  } else if (inputStage === 1) {
+    setNumTwo(digit);
   }
 }
 
 const handleOperatorInput = function (event) {
-  switch (event.target.id) {
-    
+  if (inputStage === 0) {
+    switch (event.target.id) {
+      case 'plus':
+        setOperator('+');
+        break;
+      case 'minus':
+        setOperator('-');
+        break;
+      case 'star':
+        setOperator('*');
+        break;
+      case 'slash':
+        setOperator('/');
+        break;
+      case 'equals':
+        equals();
+        break;
+      case 'clear':
+        clear();
+        break;
+    }
   }
 }
 
-const clear = function () {
+const equals = function() {
+  inputStage = 0;
+}
 
+const clear = function () {
+  displayNumOne.textContent = '';
+  displayNumTwo.textContent = '';
+  displayOperator.textContent = '';
+  inputStage = 0;
 }
 
 //Display DOM references
@@ -69,13 +106,12 @@ const displayOperator = document.querySelector('#operator');
 //Button DOM references
 const digitButtons = document.querySelector('#digit-buttons');
 const operatorButtons = document.querySelector('#operator-buttons');
-const clearButton = document.querySelector('#clear');
 
 //Adding eventListeners
 digitButtons.addEventListener('click', handleDigitInput);
 operatorButtons.addEventListener('click', handleDigitInput);
-clearButton.addEventListener('click', clear);
 
-let num1;
-let num2;
+let num1 = '';
+let num2 = '';
 let operator;
+let inputStage;
