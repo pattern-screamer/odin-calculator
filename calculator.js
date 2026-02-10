@@ -24,7 +24,12 @@ const operate = function (num1, num2, operator) {
     case '*':
       return multiply(num1, num2);
     case '/':
-      return divide(num1, num2);
+      if (num2 === 0) {
+        printError("ERROR: CAN'T DIVIDE BY 0");
+        return '';
+      } else {
+        return divide(num1, num2);
+      }
   }
 }
 
@@ -127,7 +132,7 @@ const handleOperatorInput = function (event) {
 
 const equals = function () {
   if (numOne.length > 0 && operator.length > 0 && numTwo.length === 0) {
-    printError();
+    printError("ERROR");
   } else if (numOne.length > 0 && operator.length === 0) {
     result = numOne;
     displayResult.textContent = numOne;
@@ -137,7 +142,9 @@ const equals = function () {
     result = operate(Number(numOne), Number(numTwo), operator);
     displayResult.textContent = String(result);
     storeResult(String(result));
-    clearPartial();
+    if (result != '') {
+      clearPartial();
+    }
   }
 }
 
@@ -186,7 +193,7 @@ const storeResult = function (number) {
 }
 
 //Print error
-const printError = function () {
+const printError = function (errorMessage) {
   clearPartial();
-  displayNumOne.textContent = 'ERROR';
+  displayNumOne.textContent = errorMessage;
 }
