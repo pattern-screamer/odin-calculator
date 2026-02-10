@@ -84,6 +84,10 @@ const handleDigitInput = function (event) {
   if (inputNumber === 1) {
     shiftInputNumber();
   }
+  if (inputNumber === 0 && storedResult.length > 0) {
+    storeResult('');
+    displayResult.textContent = storedResult;
+  }
   switch (event.target.id) {
     case 'zero':
       funnelDigitInput(0);
