@@ -68,5 +68,15 @@ const equals = function () {
 }
 
 const clear = function () {
-
+  numOne = '';
+  operator = '';
+  numTwo = '';
+  inputNumber = 0;
+  displayNumOne.textContent = '';
+  displayOperator.textContent = '';
+  displayNumTwo.textContent = '';
 }
+
+const clearButton = document.querySelector('#clear');
+
+clearButton.addEventListener('click', clear);
