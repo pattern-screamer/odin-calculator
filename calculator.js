@@ -28,14 +28,30 @@ const operate = function (num1, num2, operator) {
   }
 }
 
-//Extract relevant data from mathematical calculation of syntax "(operand-one) (operator) (operand-two)"
-const extractCalculation = function(string) {
-  const stringArray = string.split(' ');
-  const operationArray = [Number(stringArray[0]), Number(stringArray[2]), stringArray[1]];
-  return operationArray;
+//DOM-functions
+const setNumOne = function (numOne) {
+  num1 = numOne;
+  displayNumOne.textContent = numOne;
 }
 
-//Front-end functions
-const calculate = function (string) {
-  return operate(...extractCalculation(string));
+const setNumTwo = function (numTwo) {
+  num2 = numTwo;
+  displayNumTwo.textContent = numTwo;
 }
+
+const setOperator = function (operatorChar) {
+  operator = operatorChar;
+  displayOperator.textContent = operatorChar;
+}
+
+const displayNumOne = document.querySelector('#num1');
+const displayNumTwo = document.querySelector('#num2');
+const displayOperator = document.querySelector('#operator');
+const digitButtons = document.querySelector('#digit-buttons');
+const utilityButtons = document.querySelector('#utility-buttons');
+
+digitButtons.addEventListener()
+
+let num1;
+let num2;
+let operator;
