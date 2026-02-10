@@ -47,6 +47,7 @@ const updateNumOne = function (digit) {
 const updateOperator = function (operatorChar) {
   operator = operatorChar;
   displayOperator.textContent = operatorChar;
+  shiftInputNumber();
 }
 
 const updateNumTwo = function (digit) {
@@ -98,8 +99,23 @@ const handleDigitInput = function (event) {
   }
 }
 
-const handleOperatorInput = function (event) {
-
+const handleOperatorInput =  function (event) {
+  if (numOne.length > 0 && inputNumber === 0) {
+    switch (event.target.id) {
+      case 'plus':
+        updateOperator('+');
+        break;
+      case 'minus':
+        updateOperator('-');
+        break;
+      case 'star':
+        updateOperator('*');
+        break;
+      case 'slash':
+        updateOperator('/');
+        break;
+    }
+  }
 }
 
 const equals = function () {
@@ -121,9 +137,11 @@ const shiftInputNumber = function () {
 }
 
 const digitButtons = document.querySelector('#digit-buttons');
+const operatorButtons = document.querySelector('#operator-buttons');
 const equalsButton = document.querySelector('#equals');
 const clearButton = document.querySelector('#clear');
 
 digitButtons.addEventListener('click', handleDigitInput);
+operatorButtons.addEventListener('click', handleOperatorInput);
 equalsButton.addEventListener('click', equals);
 clearButton.addEventListener('click', clear);
