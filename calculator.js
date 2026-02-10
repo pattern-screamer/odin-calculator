@@ -1,3 +1,4 @@
+//Math operations
 const add = function (num1, num2) {
   return num1 + num2;
 }
@@ -25,4 +26,29 @@ const operate = function (num1, num2, operator) {
     case '/':
       return divide(num1, num2);
   }
+}
+
+//Display variables
+const displayNumOne = document.querySelector('#num-one');
+const displayOperator = document.querySelector('#operator');
+const displayNumTwo = document.querySelector('#num-two');
+
+let numOne = '';
+let operator = '';
+let numTwo = '';
+
+//DOM manipulation
+const updateNumOne = function (digit) {
+  numOne += digit;
+  displayNumOne.textContent = numOne;
+}
+
+const updateOperator = function (operatorChar) {
+  operator = operatorChar;
+  displayOperator.textContent = operatorChar;
+}
+
+const updateNumTwo = function (digit) {
+  numTwo += digit;
+  displayNumTwo.textContent = numTwo;
 }
