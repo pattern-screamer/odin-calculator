@@ -119,7 +119,10 @@ const handleOperatorInput =  function (event) {
 }
 
 const equals = function () {
-
+  if (numTwo.length > 0 && inputNumber === 1) {
+    result.textContent = operate(Number(numOne), Number(numTwo), operator);
+    clear();
+  }
 }
 
 const clear = function () {
@@ -140,6 +143,7 @@ const digitButtons = document.querySelector('#digit-buttons');
 const operatorButtons = document.querySelector('#operator-buttons');
 const equalsButton = document.querySelector('#equals');
 const clearButton = document.querySelector('#clear');
+const result = document.querySelector('#result');
 
 digitButtons.addEventListener('click', handleDigitInput);
 operatorButtons.addEventListener('click', handleOperatorInput);
