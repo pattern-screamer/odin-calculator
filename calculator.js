@@ -54,18 +54,29 @@ const updateNumTwo = function (digit) {
   displayNumTwo.textContent = numTwo;
 }
 
+const funnelDigitInput = function (digit) {
+  if (inputNumber === 0) {
+    updateNumOne(digit);
+  } else if (inputNumber === 1) {
+    updateNumTwo(digit);
+  }
+}
+
 //Button event listeners
 const handleDigitInput = function (event) {
-
+  switch (event.target.id) {
+    case 'zero':
+      funnelDigitInput(0);
+      break;
+  }
 }
 
 const handleOperatorInput = function (event) {
-
-
+  
 }
 
 const equals = function () {
-  
+
 }
 
 const clear = function () {
@@ -82,8 +93,10 @@ const shiftInputNumber = function () {
   inputNumber++;
 }
 
+const digitButtons = document.querySelector('#digit-buttons');
 const equalsButton = document.querySelector('#equals');
 const clearButton = document.querySelector('#clear');
 
-equalsButton.addEventListener('click', equals)
+digitButtons.addEventListener('click', handleDigitInput);
+equalsButton.addEventListener('click', equals);
 clearButton.addEventListener('click', clear);
