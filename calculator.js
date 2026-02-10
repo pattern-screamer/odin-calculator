@@ -36,6 +36,7 @@ const displayNumTwo = document.querySelector('#num-two');
 let numOne = '';
 let operator = '';
 let numTwo = '';
+let inputNumber = 0;
 
 //DOM manipulation
 const updateNumOne = function (digit) {
@@ -51,4 +52,21 @@ const updateOperator = function (operatorChar) {
 const updateNumTwo = function (digit) {
   numTwo += digit;
   displayNumTwo.textContent = numTwo;
+}
+
+//Button event listeners
+const handleDigitInput = function (event) {
+
+}
+
+const handleOperatorInput = function (event) {
+
+}
+
+const equals = function () {
+
+}
+
+const clear = function () {
+
 }
