@@ -177,9 +177,76 @@ undoButton.addEventListener('click', undo);
 //Keyboard support
 const handleKeyboardInput = function (event) {
   console.log(event.key, event.keyCode);
+  switch (event.key) {
+    //OPERATORS
+    case '+':
+      handleOperatorInput({target: {id: 'plus'}});
+      break;
+    case '-':
+      handleOperatorInput({target: {id: 'minus'}});
+      break;
+    case '*':
+      handleOperatorInput({target: {id: 'star'}});
+      break;
+    case '/':
+      handleOperatorInput({target: {id: 'slash'}});
+      break;
+  }
   switch (event.keyCode) {
-
+    //ALL NUMBER KEYS FROM 0 TO 9
+    case 48:
+      handleDigitInput({target: {id: 'zero'}});
+      break;
+    case 49:
+      handleDigitInput({target: {id: 'one'}});
+      break;
+    case 50:
+      handleDigitInput({target: {id: 'two'}});
+      break;
+    case 51:
+      handleDigitInput({target: {id: 'three'}});
+      break;
+    case 52:
+      handleDigitInput({target: {id: 'four'}});
+      break;
+    case 53:
+      handleDigitInput({target: {id: 'five'}});
+      break;
+    case 54:
+      handleDigitInput({target: {id: 'six'}});
+      break;
+    case 55:
+      handleDigitInput({target: {id: 'seven'}});
+      break;
+    case 56:
+      handleDigitInput({target: {id: 'eight'}});
+      break;
+    case 57:
+      handleDigitInput({target: {id: 'nine'}});
+      break;
+    //ENTER
+    case 13:
+      equals();
+      break;
+    //C
+    case 99:
+      clearFull();
+      break;
   }
 }
 
-document.addEventListener('keyup', handleKeyboardInput);
+const handleBackspaceAndDot = function(event) {
+  switch(event.keyCode) {
+    //BACKSPACE
+    case 8:
+      undo();
+      break;
+    //DOT
+    case 190:
+      addDot();
+      break;
+  }
+}
+
+document.addEventListener('keypress', handleKeyboardInput);
+document.addEventListener('keyup', handleBackspaceAndDot);
