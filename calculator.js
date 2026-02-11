@@ -1,17 +1,9 @@
 import { operate } from './operations.js';
+import ValueDisplayPair from './ValueDisplayPair.js';
 
-const numOne = {
-  value: '', 
-  display: document.querySelector('#num-one')
-};
-const operator = {
-  value: '',
-  display: document.querySelector('#operator')
-}
-const numTwo = {
-  value: '',
-  display: document.querySelector('#num-two')
-}
+const numOne = new ValueDisplayPair('', document.querySelector('#num-one'));
+const operator = new ValueDisplayPair('', document.querySelector('#operator'));
+const numTwo = new ValueDisplayPair('', document.querySelector('#num-two'));
 
 let inputNumber = 0;
 
@@ -19,6 +11,11 @@ let inputNumber = 0;
 const updateNumOne = function (digit) {
   numOne.value += digit;
   numOne.display.textContent = numOne.value;
+}
+
+const updateNumTwo = function (digit) {
+  numTwo.value += digit;
+  numTwo.display.textContent = numTwo.value;
 }
 
 const updateOperator = function (operatorChar) {
@@ -36,11 +33,6 @@ const updateOperator = function (operatorChar) {
       shiftInputNumber();
     }
   }
-}
-
-const updateNumTwo = function (digit) {
-  numTwo.value += digit;
-  numTwo.display.textContent = numTwo.value;
 }
 
 const funnelDigitInput = function (digit) {
