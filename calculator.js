@@ -8,16 +8,6 @@ const numTwo = new ValueDisplayPair('', document.querySelector('#num-two'));
 let inputNumber = 0;
 
 //DOM manipulation
-const updateNumOne = function (digit) {
-  numOne.value += digit;
-  numOne.display.textContent = numOne.value;
-}
-
-const updateNumTwo = function (digit) {
-  numTwo.value += digit;
-  numTwo.display.textContent = numTwo.value;
-}
-
 const updateOperator = function (operatorChar) {
   if (numOne.value.length > 0) {
     operator.value = operatorChar;
@@ -26,7 +16,7 @@ const updateOperator = function (operatorChar) {
       shiftInputNumber();
     }
   } else if (storedResult.length > 0) {
-    updateNumOne(storedResult);
+    numOne.addDigit(storedResult);
     operator.value = operatorChar;
     operator.display.textContent = operatorChar;
     if (inputNumber === 0) {
@@ -37,9 +27,9 @@ const updateOperator = function (operatorChar) {
 
 const funnelDigitInput = function (digit) {
   if (inputNumber === 0) {
-    updateNumOne(digit);
+    numOne.addDigit(digit);
   } else if (inputNumber === 2) {
-    updateNumTwo(digit);
+    numTwo.addDigit(digit);
   }
 }
 
@@ -114,7 +104,7 @@ const equals = function () {
     storeResult(numOne.value);
     clearPartial();
   } else if (numTwo.value.length > 0 && inputNumber === 2) {
-    if (Number(numTwo.value) === 0) {
+    if (Number(numTwo.value) === 0 && operator.value === '/') {
       printError("ERROR: CAN'T DIVIDE BY 0");
       result = '';
     } else {
