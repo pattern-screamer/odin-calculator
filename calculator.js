@@ -4,6 +4,7 @@ import ValueDisplayPair from './ValueDisplayPair.js';
 const numOne = new ValueDisplayPair('', document.querySelector('#num-one'));
 const operator = new ValueDisplayPair('', document.querySelector('#operator'));
 const numTwo = new ValueDisplayPair('', document.querySelector('#num-two'));
+const storedResult = new ValueDisplayPair('', document.querySelector('#result'))
 
 let inputNumber = 0;
 
@@ -14,8 +15,8 @@ const updateOperator = function (operatorChar) {
     if (inputNumber === 0) {
       shiftInputNumber();
     }
-  } else if (storedResult.length > 0) {
-    numOne.addDigit(storedResult);
+  } else if (storedResult.value.length > 0) {
+    numOne.addDigit(storedResult.value);
     operator.setValue(operatorChar);
     if (inputNumber === 0) {
       shiftInputNumber();
@@ -36,9 +37,8 @@ const handleDigitInput = function (event) {
   if (inputNumber === 1) {
     shiftInputNumber();
   }
-  if (inputNumber === 0 && storedResult.length > 0) {
-    storeResult('');
-    displayResult.textContent = storedResult;
+  if (inputNumber === 0 && storedResult.value.length > 0) {
+    storedResult.setValue('');
   }
   switch (event.target.id) {
     case 'zero':
@@ -98,8 +98,7 @@ const equals = function () {
     printError("ERROR");
   } else if (numOne.value.length > 0 && operator.value.length === 0) {
     result = numOne.value;
-    displayResult.textContent = numOne.value;
-    storeResult(numOne.value);
+    storedResult(numOne.value);
     clearPartial();
   } else if (numTwo.value.length > 0 && inputNumber === 2) {
     if (Number(numTwo.value) === 0 && operator.value === '/') {
@@ -108,8 +107,7 @@ const equals = function () {
     } else {
       result = operate(Number(numOne.value), Number(numTwo.value), operator.value);
     }
-    displayResult.textContent = String(result);
-    storeResult(String(result));
+    storedResult.setValue(String(result));
     if (result != '' || result === 0) {
       clearPartial();
     }
@@ -127,9 +125,8 @@ const clearFull = function () {
   numOne.setValue('');
   operator.setValue('');
   numTwo.setValue('');
+  storedResult.setValue('');
   inputNumber = 0;
-  displayResult.textContent = '';
-  storedResult = '';
 }
 
 const shiftInputNumber = function () {
@@ -140,19 +137,11 @@ const digitButtons = document.querySelector('#digit-buttons');
 const operatorButtons = document.querySelector('#operator-buttons');
 const equalsButton = document.querySelector('#equals');
 const clearButton = document.querySelector('#clear');
-const displayResult = document.querySelector('#result');
 
 digitButtons.addEventListener('click', handleDigitInput);
 operatorButtons.addEventListener('click', handleOperatorInput);
 equalsButton.addEventListener('click', equals);
 clearButton.addEventListener('click', clearFull);
-
-//Add result storing and manipulation functionality
-let storedResult = '';
-
-const storeResult = function (number) {
-  storedResult = number;
-}
 
 //Print error
 const printError = function (errorMessage) {
