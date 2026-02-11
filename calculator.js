@@ -1,37 +1,8 @@
+import { operate } from './operations.js';
+console.log(operate(3, 6, '-'));
+
 //Math operations
-const add = function (num1, num2) {
-  return num1 + num2;
-}
 
-const subtract = function (num1, num2) {
-  return num1 - num2;
-}
-
-const multiply = function (num1, num2) {
-  return num1 * num2;
-}
-
-const divide = function (num1, num2) {
-  return num1 / num2;
-}
-
-const operate = function (num1, num2, operator) {
-  switch (operator) {
-    case '+':
-      return add(num1, num2);
-    case '-':
-      return subtract(num1, num2);
-    case '*':
-      return multiply(num1, num2);
-    case '/':
-      if (num2 === 0) {
-        printError("ERROR: CAN'T DIVIDE BY 0");
-        return '';
-      } else {
-        return divide(num1, num2);
-      }
-  }
-}
 
 //Display variables
 const displayNumOne = document.querySelector('#num-one');
@@ -150,7 +121,12 @@ const equals = function () {
     storeResult(numOne);
     clearPartial();
   } else if (numTwo.length > 0 && inputNumber === 2) {
-    result = operate(Number(numOne), Number(numTwo), operator);
+    if (Number(numTwo) === 0) {
+      printError("ERROR: CAN'T DIVIDE BY 0");
+      result = '';
+    } else {
+      result = operate(Number(numOne), Number(numTwo), operator);
+    }
     displayResult.textContent = String(result);
     storeResult(String(result));
     if (result != '') {
