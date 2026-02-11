@@ -1,0 +1,17 @@
+body {
+  display: flex;
+  gap: 50px;
+}
+
+body > * {
+  flex: 0 1 250px;
+}
+
+.keybinds {
+  font-family: monospace, sans-serif;
+}
+
+.keybinds > p {
+  display: flex;
+  justify-content: space-between;
+}
