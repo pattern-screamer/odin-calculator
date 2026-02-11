@@ -1,36 +1,37 @@
 import { operate } from './operations.js';
-console.log(operate(3, 6, '-'));
 
-//Math operations
+const numOne = {
+  value: '', 
+  display: document.querySelector('#num-one')
+};
+const operator = {
+  value: '',
+  display: document.querySelector('#operator')
+}
+const numTwo = {
+  value: '',
+  display: document.querySelector('#num-two')
+}
 
-
-//Display variables
-const displayNumOne = document.querySelector('#num-one');
-const displayOperator = document.querySelector('#operator');
-const displayNumTwo = document.querySelector('#num-two');
-
-let numOne = '';
-let operator = '';
-let numTwo = '';
 let inputNumber = 0;
 
 //DOM manipulation
 const updateNumOne = function (digit) {
-  numOne += digit;
-  displayNumOne.textContent = numOne;
+  numOne.value += digit;
+  numOne.display.textContent = numOne.value;
 }
 
 const updateOperator = function (operatorChar) {
-  if (numOne.length > 0) {
-    operator = operatorChar;
-    displayOperator.textContent = operatorChar;
+  if (numOne.value.length > 0) {
+    operator.value = operatorChar;
+    operator.display.textContent = operatorChar;
     if (inputNumber === 0) {
       shiftInputNumber();
     }
   } else if (storedResult.length > 0) {
     updateNumOne(storedResult);
-    operator = operatorChar;
-    displayOperator.textContent = operatorChar;
+    operator.value = operatorChar;
+    operator.display.textContent = operatorChar;
     if (inputNumber === 0) {
       shiftInputNumber();
     }
@@ -38,8 +39,8 @@ const updateOperator = function (operatorChar) {
 }
 
 const updateNumTwo = function (digit) {
-  numTwo += digit;
-  displayNumTwo.textContent = numTwo;
+  numTwo.value += digit;
+  numTwo.display.textContent = numTwo.value;
 }
 
 const funnelDigitInput = function (digit) {
@@ -113,46 +114,46 @@ const handleOperatorInput = function (event) {
 }
 
 const equals = function () {
-  if (numOne.length > 0 && operator.length > 0 && numTwo.length === 0) {
+  if (numOne.value.length > 0 && operator.value.length > 0 && numTwo.value.length === 0) {
     printError("ERROR");
-  } else if (numOne.length > 0 && operator.length === 0) {
-    result = numOne;
-    displayResult.textContent = numOne;
-    storeResult(numOne);
+  } else if (numOne.value.length > 0 && operator.value.length === 0) {
+    result = numOne.value;
+    displayResult.textContent = numOne.value;
+    storeResult(numOne.value);
     clearPartial();
-  } else if (numTwo.length > 0 && inputNumber === 2) {
-    if (Number(numTwo) === 0) {
+  } else if (numTwo.value.length > 0 && inputNumber === 2) {
+    if (Number(numTwo.value) === 0) {
       printError("ERROR: CAN'T DIVIDE BY 0");
       result = '';
     } else {
-      result = operate(Number(numOne), Number(numTwo), operator);
+      result = operate(Number(numOne.value), Number(numTwo.value), operator.value);
     }
     displayResult.textContent = String(result);
     storeResult(String(result));
-    if (result != '') {
+    if (result != '' || result === 0) {
       clearPartial();
     }
   }
 }
 
 const clearPartial = function () {
-  numOne = '';
-  operator = '';
-  numTwo = '';
+  numOne.value = '';
+  operator.value = '';
+  numTwo.value = '';
   inputNumber = 0;
-  displayNumOne.textContent = '';
-  displayOperator.textContent = '';
-  displayNumTwo.textContent = '';
+  numOne.display.textContent = '';
+  operator.display.textContent = '';
+  numTwo.display.textContent = '';
 }
 
 const clearFull = function () {
-  numOne = '';
-  operator = '';
-  numTwo = '';
+  numOne.value = '';
+  operator.value = '';
+  numTwo.value = '';
   inputNumber = 0;
-  displayNumOne.textContent = '';
-  displayOperator.textContent = '';
-  displayNumTwo.textContent = '';
+  numOne.display.textContent = '';
+  operator.display.textContent = '';
+  numTwo.display.textContent = '';
   displayResult.textContent = '';
   storedResult = '';
 }
@@ -182,5 +183,5 @@ const storeResult = function (number) {
 //Print error
 const printError = function (errorMessage) {
   clearPartial();
-  displayNumOne.textContent = errorMessage;
+  numOne.display.textContent = errorMessage;
 }
