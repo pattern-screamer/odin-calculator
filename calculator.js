@@ -151,14 +151,35 @@ const addDot = function () {
   }
 }
 
+//Undo
+const undo = function () {
+  if (inputNumber === 0) {
+    numOne.removeLastDigit();
+  } else if (inputNumber === 2) {
+    numTwo.removeLastDigit();
+  }
+}
+
 const digitButtons = document.querySelector('#digit-buttons');
 const operatorButtons = document.querySelector('#operator-buttons');
 const equalsButton = document.querySelector('#equals');
 const clearButton = document.querySelector('#clear');
 const dotButton = document.querySelector('#dot');
+const undoButton = document.querySelector('#undo');
 
 digitButtons.addEventListener('click', handleDigitInput);
 operatorButtons.addEventListener('click', handleOperatorInput);
 equalsButton.addEventListener('click', equals);
 clearButton.addEventListener('click', clearFull);
 dotButton.addEventListener('click', addDot);
+undoButton.addEventListener('click', undo);
+
+//Keyboard support
+const handleKeyboardInput = function (event) {
+  console.log(event.key, event.keyCode);
+  switch (event.keyCode) {
+
+  }
+}
+
+document.addEventListener('keyup', handleKeyboardInput);
