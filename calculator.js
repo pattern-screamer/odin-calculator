@@ -10,15 +10,13 @@ let inputNumber = 0;
 //DOM manipulation
 const updateOperator = function (operatorChar) {
   if (numOne.value.length > 0) {
-    operator.value = operatorChar;
-    operator.display.textContent = operatorChar;
+    operator.setValue(operatorChar);
     if (inputNumber === 0) {
       shiftInputNumber();
     }
   } else if (storedResult.length > 0) {
     numOne.addDigit(storedResult);
-    operator.value = operatorChar;
-    operator.display.textContent = operatorChar;
+    operator.setValue(operatorChar);
     if (inputNumber === 0) {
       shiftInputNumber();
     }
@@ -119,23 +117,17 @@ const equals = function () {
 }
 
 const clearPartial = function () {
-  numOne.value = '';
-  operator.value = '';
-  numTwo.value = '';
+  numOne.setValue('');
+  operator.setValue('');
+  numTwo.setValue('');
   inputNumber = 0;
-  numOne.display.textContent = '';
-  operator.display.textContent = '';
-  numTwo.display.textContent = '';
 }
 
 const clearFull = function () {
-  numOne.value = '';
-  operator.value = '';
-  numTwo.value = '';
+  numOne.setValue('');
+  operator.setValue('');
+  numTwo.setValue('');
   inputNumber = 0;
-  numOne.display.textContent = '';
-  operator.display.textContent = '';
-  numTwo.display.textContent = '';
   displayResult.textContent = '';
   storedResult = '';
 }

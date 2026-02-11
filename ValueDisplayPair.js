@@ -8,4 +8,9 @@ export default class ValueDisplayPair {
     this.value += digit;
     this.display.textContent = this.value;
   }
+
+  setValue(value) {
+    this.value = value;
+    this.display.textContent = value;
+  }
 }
