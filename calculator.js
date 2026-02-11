@@ -1,3 +1,4 @@
+//TOOD code I want to keep in here
 import { operate } from './operations.js';
 import ValueDisplayPair from './ValueDisplayPair.js';
 
@@ -8,7 +9,6 @@ const storedResult = new ValueDisplayPair('', document.querySelector('#result'))
 
 let inputNumber = 0;
 
-//DOM manipulation
 const updateOperator = function (operatorChar) {
   if (numOne.value.length > 0) {
     operator.setValue(operatorChar);
@@ -32,7 +32,51 @@ const funnelDigitInput = function (digit) {
   }
 }
 
-//Button event listeners
+const equals = function () {
+  if (numOne.value.length > 0 && operator.value.length > 0 && numTwo.value.length === 0) {
+    printError("ERROR");
+  } else if (numOne.value.length > 0 && operator.value.length === 0) {
+    result = numOne.value;
+    storedResult.setValue(numOne.value);
+    clearPartial();
+  } else if (numTwo.value.length > 0 && inputNumber === 2) {
+    if ((Number(numTwo.value) === 0 || numTwo.value === '0.') && operator.value === '/') {
+      printError("ERROR: CAN'T DIVIDE BY 0");
+      result = '';
+    } else {
+      result = operate(Number(numOne.value), Number(numTwo.value), operator.value);
+    }
+    storedResult.setValue(String(result));
+    if (result != '' || result === 0) {
+      clearPartial();
+    }
+  }
+}
+
+const clearPartial = function () {
+  numOne.setValue('');
+  operator.setValue('');
+  numTwo.setValue('');
+  inputNumber = 0;
+}
+
+const clearFull = function () {
+  numOne.setValue('');
+  operator.setValue('');
+  numTwo.setValue('');
+  storedResult.setValue('');
+  inputNumber = 0;
+}
+
+const shiftInputNumber = function () {
+  inputNumber++;
+}
+
+const printError = function (errorMessage) {
+  clearPartial();
+  numOne.display.textContent = errorMessage;
+}
+
 const handleDigitInput = function (event) {
   if (inputNumber === 1) {
     shiftInputNumber();
@@ -93,58 +137,28 @@ const handleOperatorInput = function (event) {
   }
 }
 
-const equals = function () {
-  if (numOne.value.length > 0 && operator.value.length > 0 && numTwo.value.length === 0) {
-    printError("ERROR");
-  } else if (numOne.value.length > 0 && operator.value.length === 0) {
-    result = numOne.value;
-    storedResult(numOne.value);
-    clearPartial();
-  } else if (numTwo.value.length > 0 && inputNumber === 2) {
-    if (Number(numTwo.value) === 0 && operator.value === '/') {
-      printError("ERROR: CAN'T DIVIDE BY 0");
-      result = '';
-    } else {
-      result = operate(Number(numOne.value), Number(numTwo.value), operator.value);
+const addDot = function () {
+  if (inputNumber === 0 && !numOne.value.includes('.')) {
+    if (numOne.value.length === 0) {
+      numOne.addDigit(0);
     }
-    storedResult.setValue(String(result));
-    if (result != '' || result === 0) {
-      clearPartial();
+    numOne.addDigit('.');
+  } else if ((inputNumber === 1 || inputNumber === 2) && operator.value.length > 0 && !numTwo.value.includes('.')) {
+    if (numTwo.value.length === 0) {
+      numTwo.addDigit(0);
     }
+    numTwo.addDigit('.');
   }
-}
-
-const clearPartial = function () {
-  numOne.setValue('');
-  operator.setValue('');
-  numTwo.setValue('');
-  inputNumber = 0;
-}
-
-const clearFull = function () {
-  numOne.setValue('');
-  operator.setValue('');
-  numTwo.setValue('');
-  storedResult.setValue('');
-  inputNumber = 0;
-}
-
-const shiftInputNumber = function () {
-  inputNumber++;
 }
 
 const digitButtons = document.querySelector('#digit-buttons');
 const operatorButtons = document.querySelector('#operator-buttons');
 const equalsButton = document.querySelector('#equals');
 const clearButton = document.querySelector('#clear');
+const dotButton = document.querySelector('#dot');
 
 digitButtons.addEventListener('click', handleDigitInput);
 operatorButtons.addEventListener('click', handleOperatorInput);
 equalsButton.addEventListener('click', equals);
 clearButton.addEventListener('click', clearFull);
-
-//Print error
-const printError = function (errorMessage) {
-  clearPartial();
-  numOne.display.textContent = errorMessage;
-}
+dotButton.addEventListener('click', addDot);
