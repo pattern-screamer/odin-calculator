@@ -5,10 +5,6 @@
   padding: 0;
 }
 
-.container {
-  font-family: 'Roboto Mono', sans-serif;
-}
-
 button {
   color: white;
   background-color: #48515f;
@@ -41,9 +37,18 @@ button#all-clear:active {
   border-top: 2px solid #973c3c;
 }
 
+.wrapper {
+  background-color: black;
+}
+
 .container {
-  display: flex;
+  background: url('./bg.jpg') no-repeat center bottom;
+  background-size: cover;
+  display: grid;
+  min-height: 100vh;
   justify-content: center;
+  align-items: center;
+  font-family: 'Roboto Mono', sans-serif;
 }
 
 .calculator {
