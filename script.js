@@ -1,4 +1,4 @@
-const buttons = document.querySelector('div#buttons');
+const buttons = document.querySelector('div.buttons');
 const xDisplay = document.querySelector('span#x');
 const operatorDisplay = document.querySelector('span#operator');
 const yDisplay = document.querySelector('span#y');

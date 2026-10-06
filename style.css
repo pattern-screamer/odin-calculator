@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+}
+
+.display {
+  height: 50px;
+  padding: 4px;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 50px);
+  grid-template-rows: repeat(5, 40px);
+  grid-template-areas: 
+    "erasers erasers erasers erasers"
+    "numericals numericals numericals operators"
+    "numericals numericals numericals operators"
+    "numericals numericals numericals operators"
+    "numericals numericals numericals operators";
+  gap: 4px;
+}
+
+.erasers {
+  grid-area: erasers;
+  
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+}
+
+.numericals {
+  grid-area: numericals;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.operators {
+  grid-area: operators;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+}

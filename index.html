@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Odin Calculator</title>
   <link rel="stylesheet" href="style.css" type="text/css">
 </head>
+
 <body>
-  <p id="display">
-    <span id="x"></span>
-    <span id="operator"></span>
-    <span id="y"></span>
-  </p>
-  <div id="buttons">
-    <button id="nine">9</button>
-    <button id="eight">8</button>
-    <button id="seven">7</button>
-    <button id="six">6</button>
-    <button id="five">5</button>
-    <button id="four">4</button>
-    <button id="three">3</button>
-    <button id="two">2</button>
-    <button id="one">1</button>
-    <button id="zero">0</button>
-    <button id="plus">+</button>
-    <button id="minus">-</button>
-    <button id="star">*</button>
-    <button id="slash">/</button>
-    <button id="decimal-point">.</button>
-    <button id="equals">=</button>
-    <button id="backspace">&lt;</button>
-    <button id="all-clear">A/C</button>
+  <div class="container">
+    <div class="calculator">
+      <div class="display">
+        <span id="x"></span>
+        <span id="operator"></span>
+        <span id="y"></span>
+      </div>
+      <div class="buttons">
+        <div class="erasers">
+          <button id="all-clear">A/C</button>
+          <button id="backspace">&lt;</button>
+        </div>
+        <div class="numericals">
+          <button id="nine">9</button>
+          <button id="eight">8</button>
+          <button id="seven">7</button>
+          <button id="six">6</button>
+          <button id="five">5</button>
+          <button id="four">4</button>
+          <button id="three">3</button>
+          <button id="two">2</button>
+          <button id="one">1</button>
+          <button id="zero">0</button>
+          <button id="decimal-point">.</button>
+          <button id="equals">=</button>
+        </div>
+        <div class="operators">
+          <button id="plus">+</button>
+          <button id="minus">-</button>
+          <button id="star">*</button>
+          <button id="slash">/</button>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
+
 </html>
