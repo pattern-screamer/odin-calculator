@@ -198,4 +198,94 @@ function handleButtonInput(event) {
   }
 }
 
+const reservedKeys = [
+  '9',
+  '8',
+  '7',
+  '6',
+  '5',
+  '4',
+  '3',
+  '2',
+  '1',
+  '0',
+  '+',
+  '-',
+  '*',
+  '/',
+  '.',
+  ',',
+  '=',
+  'Backspace',
+  'Delete'
+];
+
+function handleKeyboardInput(event) {
+  console.log(event);
+  switch (event.key) {
+    case '9':
+      addToNumber(9);
+      break;
+    case '8':
+      addToNumber(8);
+      break;
+    case '7':
+      addToNumber(7);
+      break;
+    case '6':
+      addToNumber(6);
+      break;
+    case '5':
+      addToNumber(5);
+      break;
+    case '4':
+      addToNumber(4);
+      break;
+    case '3':
+      addToNumber(3);
+      break;
+    case '2':
+      addToNumber(2);
+      break;
+    case '1':
+      addToNumber(1);
+      break;
+    case '0':
+      addToNumber(0);
+      break;
+    case '+':
+      setOperator('+');
+      break;
+    case '-':
+      setOperator('-');
+      break;
+    case '*':
+      setOperator('*');
+      break;
+    case '/':
+      setOperator('/');
+      break;
+    case '.':
+    case ',':
+      addDecimalPoint();
+      break;
+    case '=':
+      evaluate();
+      break;
+    case 'Backspace':
+      backspace();
+      break;
+    case 'Delete':
+      reset();
+      break;
+  }
+}
+
 buttons.addEventListener('click', handleButtonInput);
+document.addEventListener('keydown', (event) => {
+  if (event.repeat) return;
+  if (reservedKeys.includes(event.key)) {
+    handleKeyboardInput(event);
+    event.stopPropagation();
+  }
+});
