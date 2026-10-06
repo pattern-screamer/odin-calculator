@@ -58,7 +58,15 @@ function addToNumber(addition) {
 }
 
 function setOperator(newOperator) {
-  if (x !== '' && operator === '' && editNumberIndex === 0) {
+  if (x === '' && operator === '' && editNumberIndex === 0) {
+    if (newOperator === '+' || newOperator === '-') {
+      x = '0';
+    } else if (newOperator === '*' || newOperator === '/') {
+      x = '1';
+    }
+    operator = newOperator;
+    editNumberIndex++;
+  } else if (x !== '' && operator === '' && editNumberIndex === 0) {
     operator = newOperator;
     editNumberIndex++;
   } else if (editNumberIndex === 1 && y !== '') {
