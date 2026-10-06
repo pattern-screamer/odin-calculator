@@ -69,6 +69,8 @@ function setOperator(newOperator) {
   } else if (x !== '' && operator === '' && editNumberIndex === 0) {
     operator = newOperator;
     editNumberIndex++;
+  } else if (editNumberIndex === 1 && y === '') {
+    operator = newOperator;
   } else if (editNumberIndex === 1 && y !== '') {
     evaluate();
     operator = newOperator;
@@ -102,7 +104,7 @@ function evaluate() {
     operator = '';
     y = '';
     editNumberIndex = 0;
-  } else if (x !== '' && operator === '/' && y === '0') {
+  } else if (x !== '' && operator === '/' && (Number(y) === 0)) {
     x = "Division by 0 not allowed";
     operator = '';
     y = '';
