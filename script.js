@@ -115,7 +115,9 @@ function evaluate() {
 }
 
 function backspace() {
-  if (editNumberIndex === 0 && x.length > 0) {
+  if (x === "Syntax Error" || x === "Division by 0 not allowed") {
+    reset();
+  } else if (editNumberIndex === 0 && x.length > 0) {
     x = x.slice(0, -1);
   } else if (editNumberIndex === 1 && y.length === 0) {
     operator = '';
