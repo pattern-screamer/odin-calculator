@@ -73,8 +73,10 @@ function setOperator(newOperator) {
     operator = newOperator;
   } else if (editNumberIndex === 1 && y !== '') {
     evaluate();
-    operator = newOperator;
-    editNumberIndex++;
+    if (!(x === "Syntax Error" || "Division by 0 not allowed")) {
+      operator = newOperator;
+      editNumberIndex++;
+    }
   }
   updateDisplay();
 }
