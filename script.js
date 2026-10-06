@@ -233,7 +233,10 @@ const reservedKeys = [
 ];
 
 function handleKeyboardInput(event) {
-  console.log(event);
+  if (x === "Syntax Error" || x === "Division by 0 not allowed") {
+    x = '';
+    updateDisplay();
+  }
   switch (event.key) {
     case '9':
       addToNumber(9);
