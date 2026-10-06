@@ -58,7 +58,7 @@ function addToNumber(addition) {
 }
 
 function setOperator(newOperator) {
-  if (operator === '' && editNumberIndex === 0) {
+  if (x !== '' && operator === '' && editNumberIndex === 0) {
     operator = newOperator;
     editNumberIndex++;
   } else if (editNumberIndex === 1 && y !== '') {
@@ -283,7 +283,7 @@ function handleKeyboardInput(event) {
 
 buttons.addEventListener('click', handleButtonInput);
 document.addEventListener('keydown', (event) => {
-  if (event.repeat) return;
+  if (event.repeat && event.key !== 'Backspace') return;
   if (reservedKeys.includes(event.key)) {
     handleKeyboardInput(event);
     event.stopPropagation();
